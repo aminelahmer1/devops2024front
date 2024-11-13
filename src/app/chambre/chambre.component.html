@@ -1,0 +1,51 @@
+<div class="chambre-container">
+    <h2>{{ isEditing ? 'Modifier la Chambre' : 'Ajouter une Chambre' }}</h2>
+  
+    <form [formGroup]="chambreForm" (ngSubmit)="onSubmit()" class="chambre-form">
+      <mat-form-field>
+        <input matInput placeholder="Numéro de Chambre" formControlName="numeroChambre" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Type de Chambre" formControlName="typeChambre">
+          <mat-option value="SINGLE">Simple</mat-option>
+          <mat-option value="DOUBLE">Double</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">{{ isEditing ? 'Mettre à jour' : 'Ajouter' }}</button>
+      <button mat-button color="warn" type="button" (click)="resetForm()" *ngIf="isEditing">Annuler</button>
+    </form>
+  
+    <h3>Liste des Chambres</h3>
+    <table mat-table [dataSource]="chambres" class="chambre-table">
+      <ng-container matColumnDef="idChambre">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let chambre">{{ chambre.idChambre }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="numeroChambre">
+        <th mat-header-cell *matHeaderCellDef>Numéro</th>
+        <td mat-cell *matCellDef="let chambre">{{ chambre.numeroChambre }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="typeChambre">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let chambre">{{ chambre.typeChambre }}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <td mat-cell *matCellDef="let chambre">
+          <button mat-icon-button color="primary" (click)="editChambre(chambre)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteChambre(chambre.idChambre)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['idChambre', 'numeroChambre', 'typeChambre', 'actions']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['idChambre', 'numeroChambre', 'typeChambre', 'actions'];"></tr>
+    </table>
+  </div>
+  

@@ -1,0 +1,16 @@
+.chambre-container {
+    width: 80%;
+    margin: auto;
+    padding: 2rem;
+  }
+  
+  .chambre-form {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .chambre-table {
+    width: 100%;
+  }
+  
