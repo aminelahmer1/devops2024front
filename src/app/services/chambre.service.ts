@@ -7,7 +7,7 @@ import { Chambre } from '../models/chambre';
   providedIn: 'root'
 })
 export class ChambreService {
-  private baseUrl = 'http://localhost:8081/tpFoyer17/api/chambres';
+  private baseUrl = 'http://192.168.1.12:8082/tpFoyer17/api/chambres';
 
   constructor(private http: HttpClient) { }
 
